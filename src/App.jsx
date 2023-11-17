@@ -3,7 +3,6 @@ import { BrowserRouter as ReactRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Invoice from "./Pages/Invoice";
 import { ThemeProvider } from "./context/theme/ThemeContext";
-import SideBar from "./Components/SideBar";
 
 function App() {
   // TODO: ADD PRIVATE ROUTE, IF USER TRY TO OPEN PAGE OF INVOICE UNDEFINED ID, REDIRECT TO HOME PAGE
@@ -24,7 +23,6 @@ function App() {
     <ThemeProvider>
       <InvoiceProvider>
         <ReactRouter>
-          <SideBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/invoice/:id" element={<Invoice />} />

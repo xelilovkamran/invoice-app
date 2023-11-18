@@ -1,8 +1,13 @@
-import { InvoiceProvider } from "./context/invoice/InvoiceContext";
-import { BrowserRouter as ReactRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as ReactRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Invoice from "./Pages/Invoice";
+import { InvoiceProvider } from "./context/invoice/InvoiceContext";
 import { ThemeProvider } from "./context/theme/ThemeContext";
+
+import SideBar from "./Components/SideBar";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // TODO: ADD PRIVATE ROUTE, IF USER TRY TO OPEN PAGE OF INVOICE UNDEFINED ID, REDIRECT TO HOME PAGE
@@ -23,11 +28,15 @@ function App() {
     <ThemeProvider>
       <InvoiceProvider>
         <ReactRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/invoice/:id" element={<Invoice />} />
-          </Routes>
+          <div className="flex">
+            <SideBar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/invoice/:id" element={<Invoice />} />
+            </Routes>
+          </div>
         </ReactRouter>
+        <ToastContainer />
       </InvoiceProvider>
     </ThemeProvider>
   );

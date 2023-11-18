@@ -3,7 +3,7 @@ const invoiceReducer = (state, action) => {
     case "SET_INVOICES":
       return { ...state, invoices: action.payload, loading: false };
     case "SET_LOADING":
-      return { state, loading: false };
+      return { state, loading: true };
   }
 };
 

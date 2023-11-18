@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 function InvoiceList({ invoices }) {
   return (
-    <>
+    <div className="h-[520px] overflow-y-scroll flex flex-col gap-5 pr-3 ">
       {invoices.map((invoice) => (
         <div
           key={invoice.id}
-          className="m-5 ml-0 flex justify-between items-center"
+          className="px-8 py-4 rounded-lg flex justify-between items-center bg-white"
         >
           <div className="flex gap-12">
             <p className="w-[75px]">#{invoice.id}</p>
@@ -25,7 +25,7 @@ function InvoiceList({ invoices }) {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

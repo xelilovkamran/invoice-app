@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { FaAngleDown } from "react-icons/fa";
 import { useRef } from "react";
+import { useContext } from "react";
+import InvoiceContext from "../context/invoice/InvoiceContext";
 
 function HomeHeader({ invoices }) {
+  const { filterBy, dispatch } = useContext(InvoiceContext);
   const ref = useRef();
 
   const onClick = () => {
@@ -45,16 +48,59 @@ function HomeHeader({ invoices }) {
           >
             <ul>
               <li className="flex items-center mb-4">
-                <input className="mr-4 " type="checkbox" id="draft" />
-                <label htmlFor="draft">Draft</label>
+                <input
+                  className="mr-4 cursor-pointer"
+                  type="checkbox"
+                  id="draft"
+                  onChange={() => {
+                    ref.current.classList.replace("block", "hidden");
+                    dispatch({
+                      type: "SET_FILTER_BY",
+                      payload: filterBy === "draft" ? "filterless" : "draft",
+                    });
+                  }}
+                  checked={filterBy === "draft" ? true : false}
+                />
+                <label htmlFor="draft" className="cursor-pointer">
+                  Draft
+                </label>
               </li>
               <li className="flex items-center mb-4">
-                <input className="mr-4" type="checkbox" id="pending" />
-                <label htmlFor="pending">Pending</label>
+                <input
+                  className="mr-4 cursor-pointer"
+                  type="checkbox"
+                  id="pending"
+                  onChange={() => {
+                    ref.current.classList.replace("block", "hidden");
+                    dispatch({
+                      type: "SET_FILTER_BY",
+                      payload:
+                        filterBy === "pending" ? "filterless" : "pending",
+                    });
+                  }}
+                  checked={filterBy === "pending" ? true : false}
+                />
+                <label htmlFor="pending" className="cursor-pointer">
+                  Pending
+                </label>
               </li>
               <li className="flex items-center">
-                <input className="mr-4" type="checkbox" id="paid" />
-                <label htmlFor="paid">Paid</label>
+                <input
+                  className="mr-4 cursor-pointer"
+                  type="checkbox"
+                  id="paid"
+                  onChange={() => {
+                    ref.current.classList.replace("block", "hidden");
+                    dispatch({
+                      type: "SET_FILTER_BY",
+                      payload: filterBy === "paid" ? "filterless" : "paid",
+                    });
+                  }}
+                  checked={filterBy === "paid" ? true : false}
+                />
+                <label htmlFor="paid" className="cursor-pointer">
+                  Paid
+                </label>
               </li>
             </ul>
           </div>

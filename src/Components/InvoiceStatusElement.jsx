@@ -1,20 +1,29 @@
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
 function InvoiceStatusElement({ status }) {
-  // const bgColor = {
-  //   pending: "#FF8F00",
-  //   paid: "#33D69F",
-  //   draft: "#373B53",
-  // };
+  const [color, setColor] = useState("");
 
-  // const selectedColor = bgColor[status];
+  useEffect(() => {
+    if (status === "paid") {
+      setColor("#33D69F");
+    } else if (status === "pending") {
+      setColor("#FF8F00");
+    } else {
+      setColor("#373b53");
+    }
+  }, [status]);
 
   return (
     <div
-      className={`bg-${status} flex items-center w-24 h-10 justify-center mr-4`}
+      className=" flex items-center w-24 h-10 justify-center mr-4 rounded-md"
+      style={{ backgroundColor: `${color}10` }}
     >
-      <div className={`rounded-full w-2 h-2 bg-${status}  mr-2`}></div>
-      <div>{status}</div>
+      <div
+        className="rounded-full w-2 h-2 mr-2 opacity-100 mt-1"
+        style={{ backgroundColor: color }}
+      ></div>
+      <div style={{ color }}>{status}</div>
     </div>
   );
 }

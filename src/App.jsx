@@ -1,4 +1,4 @@
-import { BrowserRouter as ReactRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Invoice from "./Pages/Invoice";
 import { InvoiceProvider } from "./context/invoice/InvoiceContext";
@@ -27,7 +27,7 @@ function App() {
   return (
     <ThemeProvider>
       <InvoiceProvider>
-        <ReactRouter>
+        <Router>
           <div className="flex">
             <SideBar />
             <Routes>
@@ -35,7 +35,7 @@ function App() {
               <Route path="/invoice/:id" element={<Invoice />} />
             </Routes>
           </div>
-        </ReactRouter>
+        </Router>
         <ToastContainer />
       </InvoiceProvider>
     </ThemeProvider>

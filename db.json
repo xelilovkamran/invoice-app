@@ -85,7 +85,7 @@
       "paymentTerms": 7,
       "clientName": "John Morrison",
       "clientEmail": "jm@myco.com",
-      "status": "paid",
+      "status": "draft",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",

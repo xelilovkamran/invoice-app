@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { useState } from "react";
 import PropTypes from "prop-types";
 import { useReducer } from "react";
 import invoiceReducer from "./InvoiceReducer";
@@ -10,6 +9,7 @@ export const InvoiceProvider = ({ children }) => {
   const initialState = {
     invoices: [],
     invoice: {},
+    filterBy: "filterless",
     loading: true,
   };
 

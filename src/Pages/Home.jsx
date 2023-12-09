@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
+import HomeHeader from "../Components/HomeHeader";
 import InvoiceList from "../Components/InvoiceList";
 import { getInvoices } from "../context/invoice/InvoiceActions";
 import InvoiceContext from "../context/invoice/InvoiceContext";
-import HomeHeader from "../Components/HomeHeader";
-import { toast } from "react-toastify";
 
 function Home() {
   const { invoices, loading, dispatch } = useContext(InvoiceContext);
@@ -31,7 +31,7 @@ function Home() {
     <div className="m-auto flex-1 max-w-4xl pt-20 px-5">
       <HomeHeader invoices={invoices} />
       {invoices.length !== 0 ? (
-        <InvoiceList invoices={invoices} />
+        <InvoiceList />
       ) : (
         <div>
           <p>There is no invoice</p>

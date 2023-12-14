@@ -1,14 +1,14 @@
-import PropTypes from "prop-types";
+import { useContext, useRef } from "react";
 import { FaAngleDown } from "react-icons/fa";
-import { useRef } from "react";
-import { useContext } from "react";
 import InvoiceContext from "../context/invoice/InvoiceContext";
+import Button from "./buttons/Button";
+import PropTypes from "prop-types";
 
-function HomeHeader({ invoices }) {
-  const { filterBy, dispatch } = useContext(InvoiceContext);
+function HomeHeader({ addInvoice: onClick }) {
+  const { invoices, filterBy, dispatch } = useContext(InvoiceContext);
   const ref = useRef();
 
-  const onClick = () => {
+  const showDropDown = () => {
     ref.current.classList.contains("hidden")
       ? ref.current.classList.replace("hidden", "block")
       : ref.current.classList.replace("block", "hidden");
@@ -31,11 +31,11 @@ function HomeHeader({ invoices }) {
           </p>
         )}
       </div>
-      <div className="flex gap-16">
+      <div className="flex gap-16 items-center ">
         <div className="relative flex flex-col items-center ">
           <div
             className="flex items-center gap-4 cursor-pointer "
-            onClick={onClick}
+            onClick={showDropDown}
           >
             <span className="text-base font-bold leading-4 mr-1 text-[#0C0E16]">
               Status
@@ -49,7 +49,7 @@ function HomeHeader({ invoices }) {
             <ul>
               <li className="flex items-center mb-4">
                 <input
-                  className="mr-4 cursor-pointer"
+                  className="mr-4 cursor-pointer accent-[#9277FF] w-4 h-4"
                   type="checkbox"
                   id="draft"
                   onChange={() => {
@@ -60,14 +60,18 @@ function HomeHeader({ invoices }) {
                     });
                   }}
                   checked={filterBy === "draft" ? true : false}
+                  disabled={invoices?.length === 0 ? true : false}
                 />
-                <label htmlFor="draft" className="cursor-pointer">
+                <label
+                  htmlFor="draft"
+                  className="cursor-pointer text-base font-bold leading-4"
+                >
                   Draft
                 </label>
               </li>
               <li className="flex items-center mb-4">
                 <input
-                  className="mr-4 cursor-pointer"
+                  className="mr-4 cursor-pointer accent-[#9277FF] w-4 h-4"
                   type="checkbox"
                   id="pending"
                   onChange={() => {
@@ -79,14 +83,18 @@ function HomeHeader({ invoices }) {
                     });
                   }}
                   checked={filterBy === "pending" ? true : false}
+                  disabled={invoices?.length === 0 ? true : false}
                 />
-                <label htmlFor="pending" className="cursor-pointer">
+                <label
+                  htmlFor="pending"
+                  className="cursor-pointer text-base font-bold leading-4"
+                >
                   Pending
                 </label>
               </li>
               <li className="flex items-center">
                 <input
-                  className="mr-4 cursor-pointer"
+                  className="mr-4 cursor-pointer accent-[#9277FF] w-4 h-4"
                   type="checkbox"
                   id="paid"
                   onChange={() => {
@@ -97,8 +105,12 @@ function HomeHeader({ invoices }) {
                     });
                   }}
                   checked={filterBy === "paid" ? true : false}
+                  disabled={invoices?.length === 0 ? true : false}
                 />
-                <label htmlFor="paid" className="cursor-pointer">
+                <label
+                  htmlFor="paid"
+                  className="cursor-pointer text-base font-bold leading-4"
+                >
                   Paid
                 </label>
               </li>
@@ -106,14 +118,14 @@ function HomeHeader({ invoices }) {
           </div>
         </div>
 
-        <button>New Invoice</button>
+        <Button text={"New Invoice"} type={"newInvoice"} onClick={onClick} />
       </div>
     </header>
   );
 }
 
 HomeHeader.propTypes = {
-  invoices: PropTypes.array.isRequired,
+  addInvoice: PropTypes.func.isRequired,
 };
 
 export default HomeHeader;

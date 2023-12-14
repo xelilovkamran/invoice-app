@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { FaAngleRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import InvoiceContext from "../context/invoice/InvoiceContext";
-import InvoiceStatusElement from "./InvoiceStatusElement";
+import InvoiceItem from "./InvoiceItem";
 
 function InvoiceList() {
   const { filterBy, invoices } = useContext(InvoiceContext);
@@ -19,26 +17,9 @@ function InvoiceList() {
   }, [filterBy, invoices]);
 
   return (
-    <div className="h-[520px] overflow-y-scroll flex flex-col gap-5 pr-3 ">
+    <div className="h-[510px] overflow-y-auto flex flex-col gap-5 pr-3 ">
       {filteredInvoices.map((invoice) => (
-        <div key={invoice.id}>
-          <Link to={`/invoice/${invoice.id}`}>
-            <div className="px-8 py-4 rounded-lg flex justify-between items-center bg-white">
-              <div className="flex gap-12">
-                <p className="w-[75px]">#{invoice.id}</p>
-                <p>Due {invoice.paymentDue}</p>
-                <p>{invoice.clientName}</p>
-              </div>
-              <div className="flex items-center">
-                <p className="mr-10">£ {invoice.total}</p>
-                <InvoiceStatusElement status={invoice.status} />
-                {/* <Link to={`/invoice/${invoice.id}`}> */}
-                <FaAngleRight className="text-[#7C5DFA]" />
-                {/* </Link> */}
-              </div>
-            </div>
-          </Link>
-        </div>
+        <InvoiceItem key={invoice.id} invoice={invoice} />
       ))}
     </div>
   );

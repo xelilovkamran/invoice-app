@@ -8,6 +8,7 @@ body {
   font-family: "League Spartan", sans-serif;
 }
 
+/* LOADING COMPONENT */
 .loading {
   position: fixed;
   top: 0;
@@ -71,4 +72,35 @@ body {
   100% {
     filter: blur(4px);
   }
+}
+
+/* ANT DESIGN - Date Picker */
+.ant-space-item {
+  width: 100%;
+}
+.ant-picker-input input {
+  color: #525357 !important;
+}
+
+/* ANT DESIGN - Select */
+
+.ant-select {
+  height: 47px !important;
+}
+
+.ant-select-selection-item {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 16px !important;
+}
+
+/* input:number */
+
+.quantityInput::-webkit-inner-spin-button,
+.priceInput::-webkit-inner-spin-button {
+  display: none;
+}
+
+.totalCost::-webkit-scrollbar {
+  display: none;
 }

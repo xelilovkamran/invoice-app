@@ -32,8 +32,8 @@ function Home() {
   const addInvoice = () => {
     if (!newInvoiceRef.current.classList.contains("active")) {
       newInvoiceRef.current.classList.replace(
-        "translate-x-[-500px]",
-        "translate-x-[0px]"
+        "-translate-x-full",
+        "translate-x-0"
       );
       newInvoiceRef.current.classList.add("active");
     }
@@ -48,13 +48,7 @@ function Home() {
 
   return (
     <>
-      {/* <div
-        ref={newInvoiceRef}
-        className="absolute pl-24 bg-white z-[50] translate-x-[-500px] transition-all duration-200 ease delay-0"
-      > */}
-
       <NewInvoice reference={newInvoiceRef} />
-      {/* </div> */}
       <div className="mx-auto flex flex-col flex-1 justify-between max-w-4xl pt-20 px-5 h-screen">
         <HomeHeader addInvoice={addInvoice} />
         {invoices.length !== 0 ? (

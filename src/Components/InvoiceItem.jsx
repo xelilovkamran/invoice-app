@@ -7,7 +7,7 @@ function InvoiceItem({ invoice }) {
   return (
     <div>
       <Link to={`/invoice/${invoice.id}`}>
-        <div className="px-8 py-4 rounded-lg flex justify-between items-center bg-white">
+        <div className="px-8 py-4 rounded-lg flex justify-between items-center shadow-lg border-[1px] border-transparent bg-white hover:border-[#7C5DFA]">
           <div className="flex gap-12">
             <p className="w-[80px] text-base font-bold leading-4">
               {" "}

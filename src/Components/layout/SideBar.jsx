@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import Rectangle from "../assets/Rectangle.svg?react";
-import Moon from "../assets/icon-moon.svg?react";
-import Sun from "../assets/icon-sun.svg?react";
-import Logo from "../assets/logo.svg?react";
-import ThemeContext from "../context/theme/ThemeContext";
+import Rectangle from "../../assets/Rectangle.svg?react";
+import Moon from "../../assets/icon-moon.svg?react";
+import Sun from "../../assets/icon-sun.svg?react";
+import Logo from "../../assets/logo.svg?react";
+import ThemeContext from "../../context/theme/ThemeContext";
 import { Link } from "react-router-dom";
 
 function SideBar() {

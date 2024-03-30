@@ -5,9 +5,12 @@ import Sun from "../../assets/icon-sun.svg?react";
 import Logo from "../../assets/logo.svg?react";
 import ThemeContext from "../../context/theme/ThemeContext";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/user/UserContext";
+import profilePicture from "@/assets/profile-picture.jpg";
 
 function SideBar() {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { avatarURL } = useContext(UserContext);
   const [imageUrl, setImageUrl] = useState("");
 
   const onClick = () => {
@@ -15,9 +18,8 @@ function SideBar() {
   };
 
   useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("user info"));
-    setImageUrl(userInfo.avatar);
-  }, []);
+    setImageUrl(avatarURL);
+  }, [avatarURL]);
 
   return (
     <div
@@ -38,7 +40,11 @@ function SideBar() {
         )}
 
         <div className="py-8 w-full border-t-[1px] border-t-[#494E6E] flex justify-center">
-          <img src={imageUrl} alt="avatar" className="rounded-full w-10 h-10" />
+          <img
+            src={imageUrl ? imageUrl : profilePicture}
+            alt="avatar"
+            className="rounded-full w-10 h-10"
+          />
         </div>
       </div>
     </div>

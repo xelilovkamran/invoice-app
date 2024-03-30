@@ -1,13 +1,13 @@
-import PaymentItem from "@/Components/PaymentItem";
-import Button from "@/Components/buttons/Button";
-import Selector from "@/Components/inputs/Selector";
+import Button from "@/components/buttons/primaryButton/Button";
+import PaymentItem from "@/components/home/paymentItem/PaymentItem";
+import Selector from "@/components/inputs/selector/Selector";
+import { postInvoice } from "@/context/invoice/InvoiceActions";
+import useValidateForm from "@/hooks/useValidateForm";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import { useState, useRef, useContext } from "react";
-import useValidateForm from "@/hooks/useValidateForm";
-import { postInvoice } from "@/context/invoice/InvoiceActions";
+import { useContext, useRef, useState } from "react";
 
-import Datepicker from "@/Components/inputs/DatePicker";
+import Datepicker from "@/components/inputs/datePicker/DatePicker";
 import { toast } from "react-toastify";
 
 import InvoiceContext from "@/context/invoice/InvoiceContext";
@@ -16,7 +16,8 @@ import { nanoid } from "nanoid";
 
 function NewInvoice({ reference }) {
   // TODO: FIX MARGIN OF SCROLLBAR
-  // TODO: FIX INVOICE ITEM STYLE PROBLEMS
+  // TODO: FIX INVOICE ITEM STYLE PROBLEMS (INVOICE ID, DATE, ETC.)
+  // TODO: FIX RE-RENDER PROBLEM IN CUSTOM HOOK
 
   const { dispatch } = useContext(InvoiceContext);
   const { invoiceIDs, dispatch: userDispatch } = useContext(UserContext);
@@ -491,6 +492,7 @@ function NewInvoice({ reference }) {
           text="discard"
           onClick={() => {
             cancelNewInvoice();
+            setIsSubmited(false);
           }}
         />
         <div className="flex gap-2 flex-wrap">

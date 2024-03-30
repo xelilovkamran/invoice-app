@@ -1,15 +1,15 @@
+import Home from "@/Pages/Home";
+import Invoice from "@/Pages/Invoice";
+import { InvoiceProvider } from "@/context/invoice/InvoiceContext";
+import { ThemeProvider } from "@/context/theme/ThemeContext";
+import { UserProvider } from "@/context/user/UserContext";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Home from "./Pages/Home";
-import Invoice from "./Pages/Invoice";
-import { InvoiceProvider } from "./context/invoice/InvoiceContext";
-import { UserProvider } from "./context/user/UserContext";
-import { ThemeProvider } from "./context/theme/ThemeContext";
 
-import SideBar from "./Components/layout/SideBar";
+import SideBar from "@/Components/layout/sideBar/SideBar";
 
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
 
 function App() {
   useEffect(() => {

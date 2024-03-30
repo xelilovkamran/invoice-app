@@ -1,14 +1,14 @@
+import EmptyInvoices from "@/components/home/emptyInvoice/EmptyInvoices";
+import HomeHeader from "@/components/home/homeHeader/HomeHeader";
+import InvoiceList from "@/components/home/invoiceList/InvoiceList";
+import NewInvoice from "@/components/home/newInvoice/NewInvoice";
+import Loading from "@/components/shared/loading/Loading";
+import { getInvoices } from "@/context/invoice/InvoiceActions";
+import InvoiceContext from "@/context/invoice/InvoiceContext";
+import { getUserData } from "@/context/user/UserActions";
+import UserContext from "@/context/user/UserContext";
 import { useContext, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
-import HomeHeader from "../Components/HomeHeader";
-import InvoiceList from "../Components/InvoiceList";
-import { getInvoices } from "../context/invoice/InvoiceActions";
-import InvoiceContext from "../context/invoice/InvoiceContext";
-import Loading from "../Components/Loading";
-import NewInvoice from "../Components/NewInvoice";
-import UserContext from "../context/user/UserContext";
-import { getUserData } from "../context/user/UserActions";
-import EmptyInvoices from "../Components/EmptyInvoices";
 
 function Home() {
   // TODO: 1. ADD DARK MODE

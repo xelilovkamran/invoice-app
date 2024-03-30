@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import Rectangle from "../../assets/Rectangle.svg?react";
-import Moon from "../../assets/icon-moon.svg?react";
-import Sun from "../../assets/icon-sun.svg?react";
-import Logo from "../../assets/logo.svg?react";
-import ThemeContext from "../../context/theme/ThemeContext";
-import { Link } from "react-router-dom";
-import UserContext from "../../context/user/UserContext";
+import Rectangle from "@/assets/Rectangle.svg?react";
+import Moon from "@/assets/icon-moon.svg?react";
+import Sun from "@/assets/icon-sun.svg?react";
+import Logo from "@/assets/logo.svg?react";
 import profilePicture from "@/assets/profile-picture.jpg";
+import ThemeContext from "@/context/theme/ThemeContext";
+import UserContext from "@/context/user/UserContext";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   const { theme, setTheme } = useContext(ThemeContext);

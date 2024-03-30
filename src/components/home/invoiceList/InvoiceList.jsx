@@ -1,6 +1,6 @@
+import InvoiceItem from "@/components/home/invoiceItem/InvoiceItem";
+import InvoiceContext from "@/context/invoice/InvoiceContext";
 import { useContext, useEffect, useState } from "react";
-import InvoiceContext from "../context/invoice/InvoiceContext";
-import InvoiceItem from "./InvoiceItem";
 
 function InvoiceList() {
   const { filterBy, invoices } = useContext(InvoiceContext);

@@ -1,0 +1,30 @@
+.ant-select {
+  height: 47px !important;
+}
+
+.ant-select-open .ant-select-selector {
+  border: 1px solid #7c5dfa !important;
+  box-shadow: none !important;
+}
+
+.ant-select-selector {
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  &:hover {
+    border: 1px solid #7c5dfa !important;
+    box-shadow: none !important;
+  }
+}
+
+.ant-select-selector {
+  &::after {
+    background-color: red !important;
+    visibility: visible !important;
+  }
+}
+
+.ant-select-selection-item {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 16px !important;
+}

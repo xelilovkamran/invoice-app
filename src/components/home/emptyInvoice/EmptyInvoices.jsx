@@ -1,4 +1,4 @@
-import emailImage from "../assets/Email campaign_Flatline.png";
+import emailImage from "@/assets/Email campaign_Flatline.png";
 
 function EmptyInvoices() {
   return (

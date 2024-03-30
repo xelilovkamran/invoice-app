@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FaAngleRight } from "react-icons/fa";
-import InvoiceStatusElement from "./InvoiceStatusElement";
+import InvoiceStatusElement from "@/components/home/invoiceStatusElement/InvoiceStatusElement";
 
 function InvoiceItem({ invoice }) {
   return (

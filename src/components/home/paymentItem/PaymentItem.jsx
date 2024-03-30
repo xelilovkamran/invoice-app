@@ -1,5 +1,6 @@
-import { FaTrash } from "react-icons/fa6";
 import PropTypes from "prop-types";
+import { FaTrash } from "react-icons/fa6";
+import "./paymentItem.css";
 
 function PaymentItem({ data, setData, index }) {
   const onChange = (e) => {

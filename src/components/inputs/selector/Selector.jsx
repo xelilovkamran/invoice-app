@@ -1,6 +1,7 @@
 import { Select } from "antd";
-import { FaAngleDown } from "react-icons/fa6";
 import PropTypes from "prop-types";
+import { FaAngleDown } from "react-icons/fa6";
+import "./selector.css";
 
 const Selector = ({ onChange: setFormData, value }) => {
   return (

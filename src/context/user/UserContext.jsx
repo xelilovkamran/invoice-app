@@ -1,7 +1,6 @@
-import { createContext } from "react";
-import { useReducer } from "react";
-import userReducer from "./UserReducer";
 import PropTypes from "prop-types";
+import { createContext, useReducer } from "react";
+import userReducer from "./UserReducer";
 
 const UserContext = createContext();
 

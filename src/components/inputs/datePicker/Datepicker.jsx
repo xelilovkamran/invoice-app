@@ -2,6 +2,7 @@ import { DatePicker, Space } from "antd";
 import dayjs from "dayjs";
 import updateLocale from "dayjs/plugin/updateLocale";
 import PropTypes from "prop-types";
+import "./datePicker.css";
 
 const dateFormat = "DD MMM YYYY";
 dayjs.extend(updateLocale);

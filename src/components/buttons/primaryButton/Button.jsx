@@ -1,5 +1,5 @@
-import { FaCirclePlus } from "react-icons/fa6";
 import PropTypes from "prop-types";
+import { FaCirclePlus } from "react-icons/fa6";
 
 function Button({ text, type, onClick }) {
   const styles = {

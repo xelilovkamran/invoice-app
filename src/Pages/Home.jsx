@@ -1,33 +1,65 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import HomeHeader from "../Components/HomeHeader";
 import InvoiceList from "../Components/InvoiceList";
 import { getInvoices } from "../context/invoice/InvoiceActions";
 import InvoiceContext from "../context/invoice/InvoiceContext";
-import emailImage from "../assets/Email campaign_Flatline.png";
 import Loading from "../Components/Loading";
 import NewInvoice from "../Components/NewInvoice";
-import { useRef } from "react";
+import UserContext from "../context/user/UserContext";
+import { getUserData } from "../context/user/UserActions";
+import EmptyInvoices from "../Components/EmptyInvoices";
 
 function Home() {
+  // TODO: 1. ADD DARK MODE
+  // TODO: 2. ADD RESPONSIVE DESIGN
+
   const { invoices, loading, dispatch } = useContext(InvoiceContext);
+  const { invoiceIDs, dispatch: userDispatch } = useContext(UserContext);
 
   const newInvoiceRef = useRef();
+  const initialRender = useRef(true);
 
   useEffect(() => {
-    dispatch({ type: "SET_LOADING" });
-    getInvoices()
-      .then((invoices) => {
-        dispatch({ type: "SET_INVOICES", payload: invoices });
-      })
-      .catch((err) => {
-        if (err.message === "bad connection") {
-          toast.error("Bad connection");
-        } else {
-          toast.error("Something went wrong");
-        }
-      });
-  }, [dispatch]);
+    const cookies = document.cookie.split(";");
+    const userID = cookies
+      .find((cookie) => cookie.substr(0, 4) === "uuid")
+      .split("=")[1];
+
+    if (initialRender.current) {
+      dispatch({ type: "SET_LOADING" });
+      getUserData(userID)
+        .then((data) => {
+          userDispatch({ type: "SET_USER_DATA", payload: data });
+        })
+        .catch((err) => {
+          if (err.message === "bad connection") {
+            toast.error("Bad connection");
+          } else {
+            toast.error("couldn't get user data");
+          }
+        });
+    }
+
+    if (invoiceIDs?.length !== 0 && !initialRender.current) {
+      getInvoices(invoiceIDs)
+        .then((invoices) => {
+          dispatch({ type: "SET_INVOICES", payload: invoices });
+        })
+        .catch((err) => {
+          if (err.message === "bad connection") {
+            toast.error("Bad connection");
+          } else {
+            toast.error("Something went wrong");
+          }
+        });
+    } else if (invoiceIDs.length === 0 && !initialRender.current) {
+      dispatch({ type: "SET_INVOICES", payload: [] });
+    }
+    initialRender.current = false;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, userDispatch, invoiceIDs]);
 
   const addInvoice = () => {
     if (!newInvoiceRef.current.classList.contains("active")) {
@@ -51,23 +83,8 @@ function Home() {
       <NewInvoice reference={newInvoiceRef} />
       <div className="mx-auto flex flex-col flex-1 justify-between max-w-4xl pt-20 px-5 h-screen">
         <HomeHeader addInvoice={addInvoice} />
-        {invoices.length !== 0 ? (
-          <InvoiceList />
-        ) : (
-          <div className="max-w-[250px] h-max mx-auto flex flex-col items-center mb-36">
-            <div className="mb-10">
-              <img src={emailImage} alt="" />
-            </div>
-            <p className="pb-2 text-2xl font-bold tracking-tighter">
-              There is nothing here
-            </p>
-            <p className="text-center text-sm font-semibold leading-4 text-[#888EB0]">
-              {" "}
-              Create an invoice by clicking the New Invoice button and get
-              started
-            </p>
-          </div>
-        )}
+
+        {invoices.length === 0 ? <EmptyInvoices /> : <InvoiceList />}
       </div>
     </>
   );

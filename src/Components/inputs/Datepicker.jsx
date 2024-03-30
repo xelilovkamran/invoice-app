@@ -21,7 +21,7 @@ function Datepicker({ onChange: setFormData, value }) {
         onChange={(value) => {
           setFormData((prev) => ({
             ...prev,
-            paymentDue: value ? value : "",
+            paymentDue: value ? dayjs(value).format("YYYY-MM-DD") : "",
           }));
         }}
       />

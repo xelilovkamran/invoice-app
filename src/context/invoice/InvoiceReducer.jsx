@@ -6,6 +6,12 @@ const invoiceReducer = (state, action) => {
       return { ...state, loading: true };
     case "SET_FILTER_BY":
       return { ...state, filterBy: action.payload };
+    case "ADD_INVOICE":
+      return {
+        ...state,
+        invoices: [...state.invoices, action.payload],
+        loading: false,
+      };
   }
 };
 

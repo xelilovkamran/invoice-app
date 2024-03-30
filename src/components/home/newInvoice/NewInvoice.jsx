@@ -14,10 +14,10 @@ import InvoiceContext from "@/context/invoice/InvoiceContext";
 import UserContext from "@/context/user/UserContext";
 import { nanoid } from "nanoid";
 
+import "./newInvoice.css";
+
 function NewInvoice({ reference }) {
-  // TODO: FIX MARGIN OF SCROLLBAR
   // TODO: FIX INVOICE ITEM STYLE PROBLEMS (INVOICE ID, DATE, ETC.)
-  // TODO: FIX RE-RENDER PROBLEM IN CUSTOM HOOK
 
   const { dispatch } = useContext(InvoiceContext);
   const { invoiceIDs, dispatch: userDispatch } = useContext(UserContext);
@@ -199,7 +199,7 @@ function NewInvoice({ reference }) {
       ref={reference}
       className={`h-screen absolute z-[50] -translate-x-full transition-all duration-200 ease delay-0 flex flex-col justify-between rounded-3xl`}
     >
-      <div className="bg-[#ececf0] flex-1 rounded-tr-3xl pl-40 overflow-y-auto pr-4">
+      <div className="scrollbar-area bg-[#ececf0] flex-1 rounded-tr-3xl pl-40 overflow-y-auto pr-4">
         <h3 className="text-left text-2xl font-bold leading-8 py-10 text-[#0C0E16]">
           New Invoice
         </h3>

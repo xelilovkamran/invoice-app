@@ -1,0 +1,26 @@
+.scrollbar-area {
+  --sb-track-color: #ececf0;
+  --sb-thumb-color: rgb(187, 194, 233);
+  --sb-size: 50px;
+}
+
+.scrollbar-area::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.scrollbar-area::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 24px;
+}
+
+.scrollbar-area::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 50px;
+  border: 20px solid #ececf0;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .scrollbar-area {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}

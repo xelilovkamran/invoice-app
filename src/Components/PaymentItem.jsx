@@ -26,11 +26,15 @@ function PaymentItem({ data, setData, index }) {
               [e.target.name]: targetValue,
               total:
                 typeof targetValue === "number"
-                  ? targetValue *
-                    (e.target.name === "quantity"
-                      ? item.price.toFixed(3)
-                      : item.quantity.toFixed(3))
-                  : 0,
+                  ? Number(
+                      (
+                        targetValue *
+                        (e.target.name === "quantity"
+                          ? item.price
+                          : item.quantity)
+                      ).toFixed(2)
+                    )
+                  : item.total,
             }
           : item
       ),

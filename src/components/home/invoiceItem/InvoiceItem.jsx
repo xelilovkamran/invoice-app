@@ -3,9 +3,17 @@ import PropTypes from "prop-types";
 import { FaAngleRight } from "react-icons/fa";
 import InvoiceStatusElement from "@/components/home/invoiceStatusElement/InvoiceStatusElement";
 
+import InvoiceContext from "@/context/invoice/InvoiceContext";
+import { useContext } from "react";
+
 function InvoiceItem({ invoice }) {
+  const { dispatch } = useContext(InvoiceContext);
+
+  const onClick = () => {
+    dispatch({ type: "SELECT_INVOICE", payload: invoice });
+  };
   return (
-    <div>
+    <div onClick={onClick}>
       <Link to={`/invoice/${invoice.id}`}>
         <div className="px-8 py-4 rounded-lg flex justify-between items-center shadow-lg border-[1px] border-transparent bg-white hover:border-[#7C5DFA]">
           <div className="flex gap-12">

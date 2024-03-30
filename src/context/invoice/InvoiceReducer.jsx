@@ -12,6 +12,8 @@ const invoiceReducer = (state, action) => {
         invoices: [...state.invoices, action.payload],
         loading: false,
       };
+    case "SELECT_INVOICE":
+      return { ...state, invoice: action.payload, loading: false };
   }
 };
 

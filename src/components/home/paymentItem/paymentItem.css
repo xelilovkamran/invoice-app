@@ -1,0 +1,8 @@
+.quantityInput::-webkit-inner-spin-button,
+.priceInput::-webkit-inner-spin-button {
+  display: none;
+}
+
+.totalCost::-webkit-scrollbar {
+  display: none;
+}

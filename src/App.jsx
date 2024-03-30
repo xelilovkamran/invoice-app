@@ -1,43 +1,36 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Invoice from "./Pages/Invoice";
 import { InvoiceProvider } from "./context/invoice/InvoiceContext";
+import { UserProvider } from "./context/user/UserContext";
 import { ThemeProvider } from "./context/theme/ThemeContext";
 
-import SideBar from "./Components/SideBar";
+import SideBar from "./Components/layout/SideBar";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 function App() {
-  // TODO: ADD PRIVATE ROUTE, IF USER TRY TO OPEN PAGE OF INVOICE UNDEFINED ID, REDIRECT TO HOME PAGE
-  // const [imageUrl, setImageUrl] = useState("");
-
-  // useEffect(() => {
-  //   const fetchAvatar = async () => {
-  //     const res = await fetch("http://localhost:3005/users");
-  //     const data = await res.json();
-  //     const imageUrl = data[0].avatar;
-  //     setImageUrl(imageUrl);
-  //   };
-
-  //   fetchAvatar();
-  // }, []);
-
+  useEffect(() => {
+    document.cookie = "uuid=9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d";
+  });
   return (
     <ThemeProvider>
-      <InvoiceProvider>
-        <Router>
-          <div className="flex">
-            <SideBar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/invoice/:id" element={<Invoice />} />
-            </Routes>
-          </div>
-        </Router>
-        <ToastContainer />
-      </InvoiceProvider>
+      <UserProvider>
+        <InvoiceProvider>
+          <Router>
+            <div className="flex">
+              <SideBar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/invoice/:id" element={<Invoice />} />
+              </Routes>
+            </div>
+          </Router>
+          <ToastContainer />
+        </InvoiceProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 }

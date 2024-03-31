@@ -17,7 +17,7 @@ function InvoiceList() {
   }, [filterBy, invoices]);
 
   return (
-    <div className="h-[510px] overflow-y-auto flex flex-col gap-5 pr-3 ">
+    <div className="flex-1 overflow-y-auto flex flex-col gap-5 pr-3 ">
       {filteredInvoices.map((invoice) => (
         <InvoiceItem key={invoice.id} invoice={invoice} />
       ))}

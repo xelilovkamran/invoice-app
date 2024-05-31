@@ -6,7 +6,7 @@
   height: 100%;
   background: #000;
   opacity: 0.5;
-  z-index: 99;
+  z-index: 2;
 }
 .loading-text {
   position: absolute;

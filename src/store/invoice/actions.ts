@@ -9,8 +9,6 @@ const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useInvoiceActions = () => {
     const dispatch = useAppDispatch();
 
-    const setLoading = () => dispatch(invoiceActions.setLoading());
-
     const setFilterBy = (filterBy: TInvoiceStatus | "filterless") =>
         dispatch(invoiceActions.setFilterBy(filterBy));
 
@@ -27,7 +25,6 @@ export const useInvoiceActions = () => {
         dispatch(postInvoice(invoice));
 
     return {
-        setLoading,
         setFilterBy,
         selectInvoice,
         setInvoices,

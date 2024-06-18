@@ -14,14 +14,12 @@ type InvoiceState = {
     invoices: TInvoice[];
     invoice: null | TInvoice;
     filterBy: TInvoiceStatus | "filterless";
-    loading: boolean;
 };
 
 const initialState: InvoiceState = {
     invoices: [],
     invoice: null,
     filterBy: "filterless",
-    loading: true,
 };
 
 export const getInvoices = createAsyncThunk(
@@ -33,6 +31,7 @@ export const getInvoices = createAsyncThunk(
         const selectedInvoices = data.filter((invoice: TInvoice) =>
             invoiceIDs.includes(invoice.id)
         );
+
         return selectedInvoices;
     }
 );
@@ -57,9 +56,6 @@ export const counterSlice = createSlice({
     name: "invoice",
     initialState,
     reducers: {
-        setLoading: (state) => {
-            state.loading = true;
-        },
         setFilterBy: (
             state,
             action: PayloadAction<TInvoiceStatus | "filterless">
@@ -69,12 +65,10 @@ export const counterSlice = createSlice({
 
         selectInvoice: (state, action: PayloadAction<TInvoice>) => {
             state.invoice = action.payload;
-            state.loading = false;
         },
 
         setInvoices: (state, action: PayloadAction<TInvoice[]>) => {
             state.invoices = action.payload;
-            state.loading = false;
         },
     },
 
@@ -84,7 +78,6 @@ export const counterSlice = createSlice({
             getInvoices.fulfilled,
             (state, action: PayloadAction<TInvoice[]>) => {
                 state.invoices = action.payload;
-                state.loading = false;
             }
         );
 
@@ -105,7 +98,6 @@ export const counterSlice = createSlice({
             postInvoice.fulfilled,
             (state, action: PayloadAction<TInvoice>) => {
                 state.invoices = [...state.invoices, action.payload];
-                state.loading = false;
             }
         );
     },

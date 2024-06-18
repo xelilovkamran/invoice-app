@@ -28,6 +28,8 @@ export type TInvoice = {
 };
 
 export type TUserData = {
+    fullName: string;
+    email: string;
     invoiceIDs: string[];
     avatarURL: string;
 };

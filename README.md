@@ -4,7 +4,7 @@
 
 ## Description
 
-This project is an intuitive and user-friendly invoice app designed to help freelancers and small businesses create and manage invoices with ease. Currently under development, the app aims to provide a seamless invoicing experience with a variety of features to cater to different user needs.
+This project is an intuitive and user-friendly invoice app designed to help freelancers and small businesses create and manage invoices with ease. Currently under development, the app aims to provide a seamless invoicing experience with a variety of features to cater to different user needs.For now, you can clone the repository and run the app on your local machine by following the setup instructions below. After updating `db.json` file according to your information, you can add, delete, and update invoices as needed.
 
 ## Features
 

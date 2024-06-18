@@ -11,6 +11,8 @@ interface CustomError {
 }
 
 const initialState: TUserData = {
+    fullName: "",
+    email: "",
     invoiceIDs: [],
     avatarURL: "",
 };
@@ -30,6 +32,8 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         setUserData: (state, action: PayloadAction<TUserData>) => {
+            state.fullName = action.payload.fullName;
+            state.email = action.payload.email;
             state.invoiceIDs = action.payload.invoiceIDs;
             state.avatarURL = action.payload.avatarURL;
         },

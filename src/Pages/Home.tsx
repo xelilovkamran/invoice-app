@@ -2,43 +2,14 @@ import EmptyInvoices from "@/components/home/emptyInvoice/EmptyInvoices";
 import HomeHeader from "@/components/home/homeHeader/HomeHeader";
 import InvoiceList from "@/components/home/invoiceList/InvoiceList";
 import NewInvoice from "@/components/home/newInvoice/NewInvoice";
-import Loading from "@/components/shared/loading/Loading";
-import { useInvoiceActions } from "@/store/invoice/actions";
+import SideBar from "@/components/layout/sideBar/SideBar";
 import { useInvoice } from "@/store/invoice/hooks";
-import { useUserActions } from "@/store/user/actions";
-import { useUser } from "@/store/user/hooks";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 function Home() {
-    const { invoices, loading } = useInvoice();
-    const { invoiceIDs } = useUser();
-    const { setLoading, setInvoices, getInvoicesAction } = useInvoiceActions();
-    const { getUserDataAction } = useUserActions();
+    const { invoices } = useInvoice();
 
     const newInvoiceRef = useRef<HTMLDivElement>();
-    const initialRender = useRef<boolean>(true);
-
-    useEffect(() => {
-        // const cookies = document.cookie.split(";");
-        // const userID = cookies
-        //     .find((cookie) => cookie.substr(0, 4) === "uuid")
-        //     .split("=")[1];
-        const userID = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d";
-
-        if (initialRender.current) {
-            setLoading();
-            getUserDataAction(userID);
-        }
-
-        if (invoiceIDs?.length !== 0 && !initialRender.current) {
-            getInvoicesAction(invoiceIDs);
-        } else if (invoiceIDs.length === 0 && !initialRender.current) {
-            setInvoices([]);
-        }
-
-        initialRender.current = false;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [invoiceIDs]);
 
     const addInvoice = () => {
         if (!newInvoiceRef.current?.classList.contains("active")) {
@@ -63,12 +34,9 @@ function Home() {
             );
     };
 
-    if (loading) {
-        return <Loading />;
-    }
-
     return (
-        <>
+        <div className="flex tablet:flex-row flex-col">
+            <SideBar />
             <NewInvoice
                 reference={
                     newInvoiceRef as React.MutableRefObject<HTMLDivElement>
@@ -82,9 +50,9 @@ function Home() {
             >
                 <HomeHeader addInvoice={addInvoice} />
 
-                {invoices.length === 0 ? <EmptyInvoices /> : <InvoiceList />}
+                {invoices?.length === 0 ? <EmptyInvoices /> : <InvoiceList />}
             </div>
-        </>
+        </div>
     );
 }
 

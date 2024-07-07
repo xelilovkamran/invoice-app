@@ -7,7 +7,7 @@ export function setCookie(key: string, value: string, days: number): void {
 
 export function getCookie(key: string): string | null {
     const cookies = document.cookie.split(";");
-    const uuid = cookies.find((cookie) => cookie.substr(0, 4) === key);
+    const uuid = cookies.find((cookie) => cookie.trim().substr(0, 4) === key);
 
     return uuid ? uuid.split("=")[1] : null;
 }

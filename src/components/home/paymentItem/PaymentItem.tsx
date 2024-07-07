@@ -59,7 +59,7 @@ function PaymentItem({ data, setData, index }: Props) {
 
     return (
         <div className="grid grid-cols-12 gap-4 mb-5">
-            <div className="col-span-5 flex flex-col gap-4">
+            <div className="sm:col-span-5 col-span-12 flex flex-col gap-4">
                 <div className="sm:hidden block text-sm font-medium leading-4  text-[#7E88C3]">
                     Item Name
                 </div>
@@ -73,7 +73,7 @@ function PaymentItem({ data, setData, index }: Props) {
                     />
                 </div>
             </div>
-            <div className="col-span-2 flex flex-col gap-4 w-full">
+            <div className="sm:col-span-2 col-span-3 flex flex-col gap-4 w-full">
                 <div className="sm:hidden block text-sm font-medium leading-4  text-[#7E88C3]">
                     Qty.
                 </div>
@@ -87,7 +87,7 @@ function PaymentItem({ data, setData, index }: Props) {
                     />
                 </div>
             </div>
-            <div className="col-span-2 flex flex-col gap-4">
+            <div className="sm:col-span-2 col-span-4 flex flex-col gap-4">
                 <div className="sm:hidden block text-sm font-medium leading-4  text-[#7E88C3]">
                     Price
                 </div>
@@ -101,7 +101,7 @@ function PaymentItem({ data, setData, index }: Props) {
                     />
                 </div>
             </div>
-            <div className="col-span-2 flex flex-col gap-4">
+            <div className="sm:col-span-2 col-span-3 flex flex-col gap-4">
                 <div className="sm:hidden block text-sm font-medium leading-4  text-[#7E88C3]">
                     Total
                 </div>
@@ -109,11 +109,10 @@ function PaymentItem({ data, setData, index }: Props) {
                     {data.items[index].total}
                 </div>
             </div>
-            <div className="col-span-1 flex flex-col gap-4 justify-center cursor-pointer">
-                <div className="mb-3"></div>
-                <div>
+            <div className="sm:col-span-1 col-span-2 flex flex-col gap-4 justify-center">
+                <div className="h-full flex sm:items-center items-end sm:mb-0 mb-3">
                     <FaTrash
-                        className="text-[#888EB0] hover:text-[#EC5757]"
+                        className="text-[#888EB0] hover:text-[#EC5757] cursor-pointer"
                         onClick={onClick}
                     />
                 </div>

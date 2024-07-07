@@ -12,6 +12,7 @@ import { nanoid } from "nanoid";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import "./newInvoice.css";
+import { getCookie } from "@/utils/cookie";
 
 type Props = {
     reference: React.MutableRefObject<HTMLDivElement>;
@@ -20,7 +21,7 @@ type Props = {
 function NewInvoice({ reference }: Props) {
     const { invoiceIDs } = useUser();
     const { addInvoiceID } = useUserActions();
-    const { setLoading, postInvoiceAction } = useInvoiceActions();
+    const { postInvoiceAction } = useInvoiceActions();
     const ref = useRef<HTMLDivElement>();
     const [isSubmited, setIsSubmited] = useState<boolean>(false);
 
@@ -154,7 +155,6 @@ function NewInvoice({ reference }: Props) {
         setIsSubmited(true);
 
         if (isValid) {
-            setLoading();
             const total = formData.items.reduce(
                 (acc: number, { total }: TPaymentItem) => {
                     return acc + total;
@@ -171,10 +171,7 @@ function NewInvoice({ reference }: Props) {
             postInvoiceAction(formDataCopy)
                 .unwrap()
                 .then((data: TInvoice) => {
-                    const cookies = document.cookie.split(";");
-                    const userID = cookies
-                        .find((cookie) => cookie.substr(0, 4) === "uuid")
-                        ?.split("=")[1];
+                    const userID = getCookie("uuid");
 
                     fetch(`http://localhost:3005/users/${userID}`, {
                         method: "PATCH",

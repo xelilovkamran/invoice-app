@@ -7,28 +7,27 @@ import { getInvoices, postInvoice } from "@/store/invoice/index";
 const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 
 export const useInvoiceActions = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-    const setFilterBy = (filterBy: TInvoiceStatus | "filterless") =>
-        dispatch(invoiceActions.setFilterBy(filterBy));
+  const setFilterBy = (filterBy: TInvoiceStatus | "filterless") =>
+    dispatch(invoiceActions.setFilterBy(filterBy));
 
-    const selectInvoice = (invoice: TInvoice) =>
-        dispatch(invoiceActions.selectInvoice(invoice));
+  const selectInvoice = (invoice: TInvoice) =>
+    dispatch(invoiceActions.selectInvoice(invoice));
 
-    const setInvoices = (invoices: TInvoice[]) =>
-        dispatch(invoiceActions.setInvoices(invoices));
+  const setInvoices = (invoices: TInvoice[]) =>
+    dispatch(invoiceActions.setInvoices(invoices));
 
-    const getInvoicesAction = (invoiceIDs: string[]) =>
-        dispatch(getInvoices(invoiceIDs));
+  const getInvoicesAction = () => dispatch(getInvoices());
 
-    const postInvoiceAction = (invoice: TInvoice) =>
-        dispatch(postInvoice(invoice));
+  const postInvoiceAction = (invoice: Omit<TInvoice, "id">) =>
+    dispatch(postInvoice(invoice));
 
-    return {
-        setFilterBy,
-        selectInvoice,
-        setInvoices,
-        getInvoicesAction,
-        postInvoiceAction,
-    };
+  return {
+    setFilterBy,
+    selectInvoice,
+    setInvoices,
+    getInvoicesAction,
+    postInvoiceAction,
+  };
 };

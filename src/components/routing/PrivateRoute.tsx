@@ -1,49 +1,75 @@
 import Loading from "@/components/shared/loading/Loading";
-import { useInvoiceActions } from "@/store/invoice/actions";
-import { useUserActions } from "@/store/user/actions";
-import { getCookie } from "@/utils/cookie";
+import api from "@/utils/api";
+import { getItem, setItem } from "@/utils/storage";
+import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 function PrivateRoute() {
-    const [userID, setUserID] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
-    const { setUserData } = useUserActions();
-    const { getInvoicesAction } = useInvoiceActions();
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            const userID = getCookie("uuid");
+  useEffect(() => {
+    auth().catch(() => setIsAuthorized(false));
+    // eslint-disable-next-line
+  }, []);
 
-            if (!userID) {
-                setLoading(false);
-                return;
-            }
-            setUserID(userID);
-
-            const availableUsers = await fetch(
-                `http://localhost:3005/users?id=${userID}`
-            ).then((res) => res.json());
-
-            const user = availableUsers[0];
-            delete user.password;
-            delete user.id;
-
-            await getInvoicesAction(user.invoiceIDs);
-
-            setUserData(user);
-            setLoading(false);
-        };
-
-        fetchUser();
-        // eslint-disable-next-line
-    }, []);
-
-    if (loading) {
-        return <Loading />;
+  const refreshToken = async () => {
+    const refresh = getItem("refresh");
+    if (!refresh) {
+      setIsAuthorized(false);
+      return;
     }
 
-    return <>{!userID ? <Navigate to="/sign-in" /> : <Outlet />}</>;
+    try {
+      const response = await api.post(
+        "/user/token/refresh/",
+        {
+          refresh,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.data;
+
+      if (response.status === 200) {
+        setItem("access", data.access);
+        setItem("refresh", data.refresh);
+        setIsAuthorized(true);
+      } else {
+        setIsAuthorized(false);
+      }
+    } catch (error) {
+      setIsAuthorized(false);
+    }
+  };
+
+  const auth = async () => {
+    const token = getItem("access");
+    if (!token) {
+      setIsAuthorized(false);
+      return;
+    }
+
+    const decodedToken = jwtDecode(token);
+    const expireTime = decodedToken.exp;
+    const currentTime = Date.now() / 1000;
+
+    if (expireTime && expireTime < currentTime) {
+      await refreshToken();
+    } else {
+      setIsAuthorized(true);
+    }
+  };
+
+  if (isAuthorized === null) {
+    return <Loading />;
+  }
+
+  return isAuthorized ? <Outlet /> : <Navigate to="/sign-in" />;
 }
 
 export default PrivateRoute;

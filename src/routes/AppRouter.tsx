@@ -9,25 +9,22 @@ import SignUp from "@/pages/SignUp";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function AppRouter() {
-    return (
-        <Router>
-            <div>
-                <Routes>
-                    <Route path="/" element={<PrivateRoute />}>
-                        <Route path="/" element={<Home />} />
-                    </Route>
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/invoice/:id" element={<Invoice />} />
-                    <Route path="/sign-in" element={<SignIn />} />
-                    <Route path="/sign-up" element={<SignUp />} />
-                    <Route
-                        path="/forgot-password"
-                        element={<ForgotPassword />}
-                    />
-                </Routes>
-            </div>
-        </Router>
-    );
+  return (
+    <Router>
+      <div>
+        <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/invoice/:id" element={<Invoice />} />
+          </Route>
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default AppRouter;

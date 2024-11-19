@@ -1,8 +1,10 @@
-import { type TInvoice } from "@/types/types";
+import "./datePicker.css";
+
 import { DatePicker, Space } from "antd";
 import dayjs, { type Dayjs } from "dayjs";
 import updateLocale from "dayjs/plugin/updateLocale";
-import "./datePicker.css";
+
+import { type TInvoice } from "@/types/types";
 
 const dateFormat = "DD MMM YYYY";
 dayjs.extend(updateLocale);

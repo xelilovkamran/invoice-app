@@ -1,14 +1,16 @@
-import AppRouter from "@/routes/AppRouter";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { ToastContainer } from "react-toastify";
+
+import AppRouter from "@/routes/AppRouter";
+
 function App() {
-    return (
-        <>
-            <AppRouter />
-            <ToastContainer />
-        </>
-    );
+  return (
+    <>
+      <AppRouter />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;

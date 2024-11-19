@@ -1,6 +1,8 @@
-import { TInvoice, TPaymentItem } from "@/types/types";
-import { FaTrash } from "react-icons/fa6";
 import "./paymentItem.css";
+
+import { FaTrash } from "react-icons/fa6";
+
+import { TInvoice, TPaymentItem } from "@/types/types";
 
 type Props = {
   data: Omit<TInvoice, "id">;

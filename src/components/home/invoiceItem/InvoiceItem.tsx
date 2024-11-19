@@ -1,11 +1,12 @@
+import dayjs from "dayjs";
+import { FaAngleRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 import InvoiceItemMobile from "@/components/home/invoiceItem/InvoiceItemMobile";
 import InvoiceStatusElement from "@/components/home/invoiceStatusElement/InvoiceStatusElement";
 import useMobileDesign from "@/hooks/useMobileDesign";
 import { useInvoiceActions } from "@/store/invoice/actions";
 import { type TInvoice } from "@/types/types";
-import dayjs from "dayjs";
-import { FaAngleRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 type Props = {
   invoice: TInvoice;

@@ -1,18 +1,17 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
 import path from "path";
+import { defineConfig } from "vite";
+import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), svgr()],
-    resolve: {
-        alias: {
-            // eslint-disable-next-line no-undef
-            "@": path.resolve(__dirname, "./src"),
-        },
+  plugins: [react(), svgr()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
-    server: {
-        host: true,
-    },
+  },
+  server: {
+    host: true,
+  },
 });

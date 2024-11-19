@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 import EmptyInvoices from "@/components/home/emptyInvoice/EmptyInvoices";
 import HomeHeader from "@/components/home/homeHeader/HomeHeader";
 import InvoiceList from "@/components/home/invoiceList/InvoiceList";
@@ -7,7 +9,6 @@ import Loading from "@/components/shared/loading/Loading";
 import { useInvoiceActions } from "@/store/invoice/actions";
 import { useInvoice } from "@/store/invoice/hooks";
 import { useUserActions } from "@/store/user/actions";
-import { useEffect, useRef, useState } from "react";
 
 function Home() {
   const [loading, setLoading] = useState(true);

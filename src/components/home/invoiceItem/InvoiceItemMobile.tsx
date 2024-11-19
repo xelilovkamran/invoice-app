@@ -1,7 +1,8 @@
-import InvoiceStatusElement from "@/components/home/invoiceStatusElement/InvoiceStatusElement";
-import { type TInvoice } from "@/types/types";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+
+import InvoiceStatusElement from "@/components/home/invoiceStatusElement/InvoiceStatusElement";
+import { type TInvoice } from "@/types/types";
 
 type Props = {
   invoice: TInvoice;

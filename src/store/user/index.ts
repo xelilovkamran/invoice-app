@@ -1,11 +1,12 @@
-import { type TUserData } from "@/types/types";
-import api from "@/utils/api";
 import {
   createAsyncThunk,
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+
+import { type TUserData } from "@/types/types";
+import api from "@/utils/api";
 
 interface CustomError {
   message?: string;

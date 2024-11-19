@@ -1,5 +1,6 @@
-import { type TInvoice, type TPaymentItem } from "@/types/types";
 import { useEffect, useState } from "react";
+
+import { type TInvoice, type TPaymentItem } from "@/types/types";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

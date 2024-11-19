@@ -1,3 +1,10 @@
+import "./newInvoice.css";
+
+import dayjs from "dayjs";
+import { customAlphabet } from "nanoid";
+import React, { useRef, useState } from "react";
+import { toast } from "react-toastify";
+
 import Button from "@/components/buttons/primaryButton/Button";
 import PaymentItem from "@/components/home/paymentItem/PaymentItem";
 import Datepicker from "@/components/inputs/datePicker/DatePicker";
@@ -5,11 +12,6 @@ import Selector from "@/components/inputs/selector/Selector";
 import useValidateForm from "@/hooks/useValidateForm";
 import { useInvoiceActions } from "@/store/invoice/actions";
 import { type TAddress, type TInvoice, type TPaymentItem } from "@/types/types";
-import dayjs from "dayjs";
-import { customAlphabet } from "nanoid";
-import React, { useRef, useState } from "react";
-import { toast } from "react-toastify";
-import "./newInvoice.css";
 
 type Props = {
   reference: React.MutableRefObject<HTMLDivElement>;

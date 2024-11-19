@@ -1,14 +1,15 @@
+import { configureStore } from "@reduxjs/toolkit";
+
 import invoiceReducer from "@/store/invoice/index";
 import themeReducer from "@/store/theme/index";
 import userReducer from "@/store/user/index";
-import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
-    reducer: {
-        invoice: invoiceReducer,
-        user: userReducer,
-        theme: themeReducer,
-    },
+  reducer: {
+    invoice: invoiceReducer,
+    user: userReducer,
+    theme: themeReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

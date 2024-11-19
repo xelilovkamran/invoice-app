@@ -1,11 +1,12 @@
-import Rectangle from "@/assets/Rectangle.svg?react";
+import { Link } from "react-router-dom";
+
 import Moon from "@/assets/icon-moon.svg?react";
 import Sun from "@/assets/icon-sun.svg?react";
 import Logo from "@/assets/logo.svg?react";
+import Rectangle from "@/assets/Rectangle.svg?react";
 import { useThemeActions } from "@/store/theme/actions";
 import { useTheme } from "@/store/theme/hooks";
 import { useUser } from "@/store/user/hooks";
-import { Link } from "react-router-dom";
 
 function SideBar() {
   const { theme } = useTheme();

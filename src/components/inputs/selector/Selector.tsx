@@ -1,7 +1,9 @@
-import { TInvoice } from "@/types/types";
+import "./selector.css";
+
 import { Select } from "antd";
 import { FaAngleDown } from "react-icons/fa6";
-import "./selector.css";
+
+import { TInvoice } from "@/types/types";
 
 type Props = {
   onChange: React.Dispatch<Omit<TInvoice, "id">>;

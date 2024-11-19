@@ -1,9 +1,10 @@
-import Loading from "@/components/shared/loading/Loading";
-import api from "@/utils/api";
-import { getItem, setItem } from "@/utils/storage";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+
+import Loading from "@/components/shared/loading/Loading";
+import api from "@/utils/api";
+import { getItem, setItem } from "@/utils/storage";
 
 function PrivateRoute() {
   const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);

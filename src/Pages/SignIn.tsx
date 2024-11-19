@@ -1,8 +1,3 @@
-import Illustration from "@/assets/Illustration.png";
-import AuthButton from "@/components/buttons/authButtons/AuthButton";
-import Loading from "@/components/shared/loading/Loading";
-import api from "@/utils/api";
-import { getItem, setItem } from "@/utils/storage";
 import axios from "axios";
 import { useFormik } from "formik";
 import { jwtDecode } from "jwt-decode";
@@ -10,6 +5,12 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+
+import Illustration from "@/assets/Illustration.png";
+import AuthButton from "@/components/buttons/authButtons/AuthButton";
+import Loading from "@/components/shared/loading/Loading";
+import api from "@/utils/api";
+import { getItem, setItem } from "@/utils/storage";
 
 interface FormValues {
   email: string;
@@ -47,8 +48,12 @@ function SignIn() {
       .required("Please enter your password"),
   });
 
-  const handleGoogleAuth = () => {
-    console.log("Functionality will be integrated soon!");
+  const handleGoogleAuth = async () => {
+    window.location.href = `${import.meta.env.VITE_OAUTH_AUTH_URL}?client_id=${
+      import.meta.env.VITE_OAUTH_CLIENT_ID
+    }&redirect_uri=${
+      import.meta.env.VITE_OAUTH_REDIRECT_URI
+    }&response_type=code&scope=email%20profile&access_type=offline&prompt=consent`;
   };
 
   const handleGithubAuth = () => {

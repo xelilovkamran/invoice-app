@@ -1,12 +1,13 @@
-import PrivateRoute from "@/components/routing/PrivateRoute";
-import ForgotPassword from "@/pages/ForgotPassword";
-import Home from "@/pages/Home";
-import Invoice from "@/pages/Invoice";
-import Profile from "@/pages/Profile";
-import SignIn from "@/pages/SignIn";
-import SignUp from "@/pages/SignUp";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import PrivateRoute from "@/components/routing/PrivateRoute";
+import AuthCallback from "@/Pages/AuthCallback";
+import ForgotPassword from "@/Pages/ForgotPassword";
+import Home from "@/Pages/Home";
+import Invoice from "@/Pages/Invoice";
+import Profile from "@/Pages/Profile";
+import SignIn from "@/Pages/SignIn";
+import SignUp from "@/Pages/SignUp";
 
 function AppRouter() {
   return (
@@ -20,6 +21,7 @@ function AppRouter() {
           </Route>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </div>

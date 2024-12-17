@@ -57,7 +57,7 @@ function SignIn() {
   };
 
   const handleGithubAuth = () => {
-    console.log("Functionality will be integrated soon!");
+    // console.log("Functionality will be integrated soon!");
   };
 
   const handleSubmit = async (values: FormValues): Promise<void> => {
